@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect, useRef} from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import { presentFetched, quittingFetched } from './redux/MainSlice';
+import BasicTabs from './components/basicTabs';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    const infoRef = useRef()
+    const {patientInfo} = useSelector(state => state.main)
+
+    useEffect(() => {
+        fetch('http://localhost:3000/presentList')
+            .then((response) => response.json())
+            .then((data) => dispatch(presentFetched(data)));
+        fetch('http://localhost:3001/quittingList')
+            .then((response) => response.json())
+            .then((data) => dispatch(quittingFetched(data)));
+    }, [])
+
+    useEffect(() => {
+        if (Object.keys(patientInfo).length !== 0) {
+            infoRef.current.style.outline = '2px solid #3299cc'
+        } else {
+            infoRef.current.style.outline = 'none'
+        }
+    }, [patientInfo])
+
+    return (
+        <div className="app-wrapper">
+            <div ref={infoRef} className="left-block">
+                <div className='left-header'>Информация о пациенте</div>
+                <div className='patient-info-wrapper'>
+                    <div>ФИО</div>
+                    <div className='info-area'>{patientInfo.fullName}</div>
+                </div>
+                <div className='patient-info-wrapper'>
+                    <div>Возраст</div>
+                    <div className='info-area'>{patientInfo.age}</div>
+                </div>
+                <div className='patient-info-wrapper'>
+                    <div>Диагноз</div>
+                    <div className='info-area'>{patientInfo.diagnosis}</div>
+                </div>
+            </div>
+            <div className="right-block">
+                <BasicTabs/>
+            </div>
+        </div>
+    );
 }
 
 export default App;

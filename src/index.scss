@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(203, 205, 205);
+    vertical-align: middle;
+}
+
+.app-wrapper {
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+    align-items: center;
+    .right-block {
+        width: 49%;
+        background-color: white;
+        height: 98vh;
+        overflow: auto;
+    }
+    .left-block {
+        width: 49%;
+        background-color: white;
+        height: 98vh;
+    }
+}
+
+.left-header {
+    height: 48px;
+    background-color: #3299cc;
+    color: white;
+    font-size: 20px;
+    line-height: 48px;
+    padding-left: 10px;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: #3299cc !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+    background-color: #3299cc !important;
+}
+
+.info-area {
+    min-width: fit-content;
+    width: 200px;
+    border-bottom: 1px solid #eeeeee;
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+.patient-info-wrapper {
+    display: flex;
+    margin: 15px 10px;
+}
+
+tbody tr {
+    cursor: pointer;
+    &:hover {
+        background-color: #eeeeee;
+        &.active{
+            border-left: 2px solid #3299cc;
+        }
+    }
+    &.active {
+        border-left: 2px solid #3299cc;
+    }
+}
