@@ -57,9 +57,11 @@ export default function BasicTabs() {
                     <Tab label={`Выбывшие(${quittingList.length})`} {...a11yProps(1)} />
                 </Tabs>
             </Box>
+
             <TabPanel value={value} index={0}>
                 <BasicTable status='presentList' data={presentList} />
             </TabPanel>
+
             <TabPanel value={value} index={1}>
                 <BasicTable status='quittingList' data={quittingList} />
             </TabPanel>

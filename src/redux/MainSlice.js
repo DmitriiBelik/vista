@@ -4,6 +4,7 @@ const initialState = {
     presentList: [],
     quittingList: [],
     patientInfo: {},
+    loadingStatus: 'loading',
 }
 
 const MainSlice = createSlice({
@@ -19,10 +20,13 @@ const MainSlice = createSlice({
         patientInfoFetched: (state, action) => {
             state.patientInfo = action.payload
         },
+        loadingStatusChanged: (state, action) => {
+            state.loadingStatus = action.payload
+        },
     },
 })
 
 const { reducer, actions } = MainSlice
-export const { presentFetched, quittingFetched, patientInfoFetched } = actions
+export const { presentFetched, quittingFetched, patientInfoFetched, loadingStatusChanged } = actions
 
 export default reducer
