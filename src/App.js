@@ -1,22 +1,24 @@
-import {useEffect, useRef} from 'react'
-import {useDispatch, useSelector} from "react-redux"
-import { presentFetched, quittingFetched } from './redux/MainSlice';
-import BasicTabs from './components/basicTabs';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import BasicTabs from './components/basicTabs'
+import { presentFetched, quittingFetched } from './redux/MainSlice'
 
 function App() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const infoRef = useRef()
-    const {patientInfo} = useSelector(state => state.main)
+    const { patientInfo } = useSelector((state) => state.main)
 
     useEffect(() => {
         fetch('http://localhost:3000/presentList')
             .then((response) => response.json())
-            .then((data) => dispatch(presentFetched(data)));
+            .then((data) => dispatch(presentFetched(data)))
         fetch('http://localhost:3001/quittingList')
             .then((response) => response.json())
-            .then((data) => dispatch(quittingFetched(data)));
+            .then((data) => dispatch(quittingFetched(data)))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -28,11 +30,11 @@ function App() {
     }, [patientInfo])
 
     return (
-        <div className="app-wrapper">
-            <div ref={infoRef} className="left-block">
+        <div className='app-wrapper'>
+            <div ref={infoRef} className='left-block'>
                 <div className='left-header'>
-                Информация о пациенте
-                <ArrowBackIosIcon className='arrow'/>
+                    Информация о пациенте
+                    <ArrowBackIosIcon className='arrow' />
                 </div>
                 <div className='patient-info-wrapper'>
                     <div>ФИО</div>
@@ -47,12 +49,12 @@ function App() {
                     <div className='info-area'>{patientInfo.diagnosis}</div>
                 </div>
             </div>
-            <MoreVertIcon className='vertical'/>
-            <div className="right-block">
-                <BasicTabs/>
+            <MoreVertIcon className='vertical' />
+            <div className='right-block'>
+                <BasicTabs />
             </div>
         </div>
-    );
+    )
 }
 
-export default App;
+export default App
