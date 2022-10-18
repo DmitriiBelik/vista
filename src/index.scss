@@ -1,3 +1,5 @@
+$blue-color: #3299cc;
+
 body {
     margin: 0;
     padding: 0;
@@ -25,7 +27,7 @@ body {
 
 .left-header {
     height: 48px;
-    background-color: #3299cc;
+    background-color: $blue-color;
     color: white;
     font-size: 20px;
     line-height: 48px;
@@ -35,11 +37,11 @@ body {
 }
 
 .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: #3299cc !important;
+    color: $blue-color !important;
 }
 
 .css-1aquho2-MuiTabs-indicator {
-    background-color: #3299cc !important;
+    background-color: $blue-color !important;
 }
 
 .info-area {
@@ -59,12 +61,12 @@ tbody tr {
     cursor: pointer;
     &:hover {
         background-color: #eeeeee;
-        &.active{
+        &.active {
             border-left: 2px solid #3299cc;
         }
     }
     &.active {
-        border-left: 2px solid #3299cc;
+        border-left: 2px solid $blue-color;
     }
 }
 
