@@ -4,7 +4,7 @@ import {patientInfoFetched} from '../redux/MainSlice'
 
 export default function BasicTable({status, data}) {
     const dispatch = useDispatch()
-    const {presentList, quittingList, patientInfo} = useSelector(state => state.main)
+    const {presentList, quittingList} = useSelector(state => state.main)
     const currentDate = new Date();
     const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
 

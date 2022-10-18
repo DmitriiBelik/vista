@@ -2,6 +2,8 @@ import {useEffect, useRef} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import { presentFetched, quittingFetched } from './redux/MainSlice';
 import BasicTabs from './components/basicTabs';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 function App() {
     const dispatch = useDispatch();
@@ -28,7 +30,10 @@ function App() {
     return (
         <div className="app-wrapper">
             <div ref={infoRef} className="left-block">
-                <div className='left-header'>Информация о пациенте</div>
+                <div className='left-header'>
+                Информация о пациенте
+                <ArrowBackIosIcon className='arrow'/>
+                </div>
                 <div className='patient-info-wrapper'>
                     <div>ФИО</div>
                     <div className='info-area'>{patientInfo.fullName}</div>
@@ -42,6 +47,7 @@ function App() {
                     <div className='info-area'>{patientInfo.diagnosis}</div>
                 </div>
             </div>
+            <MoreVertIcon className='vertical'/>
             <div className="right-block">
                 <BasicTabs/>
             </div>
