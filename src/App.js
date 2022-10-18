@@ -12,13 +12,34 @@ function App() {
     const { patientInfo } = useSelector((state) => state.main)
 
     useEffect(() => {
-        fetch('http://localhost:3000/presentList')
-            .then((response) => response.json())
-            .then((data) => dispatch(presentFetched(data)))
-        fetch('http://localhost:3001/quittingList')
-            .then((response) => response.json())
-            .then((data) => dispatch(quittingFetched(data)))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        let quittingReq = new XMLHttpRequest()
+        quittingReq.open('GET', 'https://api.jsonbin.io/v3/b/634e6c812b3499323be27565/', true)
+        quittingReq.setRequestHeader(
+            '$2b$10$Mv3MimaSkQldJq0VUBSUB.rTf4oxIwIZthuHiiCsLUSpH0wYkB.Tm',
+            '$2b$10$yhl80auTz.cXGt26cM4LgOFoAm4BvRc.dBpRrIJfQ/6ckU59ld.9K',
+        )
+        quittingReq.send()
+        quittingReq.onload = function () {
+            dispatch(quittingFetched(JSON.parse(quittingReq.response).record.quittingList))
+        }
+
+        quittingReq.onerror = function () {
+            alert('Запрос не удался')
+        }
+        let presentReq = new XMLHttpRequest()
+        presentReq.open('GET', 'https://api.jsonbin.io/v3/b/634e6c710e6a79321e2c5c65/', true)
+        presentReq.setRequestHeader(
+            '$2b$10$Mv3MimaSkQldJq0VUBSUB.rTf4oxIwIZthuHiiCsLUSpH0wYkB.Tm',
+            '$2b$10$yhl80auTz.cXGt26cM4LgOFoAm4BvRc.dBpRrIJfQ/6ckU59ld.9K',
+        )
+        presentReq.send()
+        presentReq.onload = function () {
+            dispatch(presentFetched(JSON.parse(presentReq.response).record.presentList))
+        }
+
+        presentReq.onerror = function () {
+            alert('Запрос не удался')
+        }
     }, [])
 
     useEffect(() => {
